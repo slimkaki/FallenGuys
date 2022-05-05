@@ -1,6 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3108075608581819978
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2dc886499c26824283350fa532d087d, type: 3}
+  m_Name: XRGeneralSettings
+  m_EditorClassIdentifier: 
+  Keys: 01000000
+  Values:
+  - {fileID: 2740494412359515411}
+--- !u!114 &1089744874460163297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16,23 +31,8 @@ MonoBehaviour:
   m_AutomaticLoading: 0
   m_AutomaticRunning: 0
   m_Loaders:
-  - {fileID: 11400000, guid: 69219be6184088945b2d4549dfafc3d7, type: 2}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2dc886499c26824283350fa532d087d, type: 3}
-  m_Name: XRGeneralSettings
-  m_EditorClassIdentifier: 
-  Keys: 01000000
-  Values:
-  - {fileID: 5950012469405715520}
---- !u!114 &5950012469405715520
+  - {fileID: 11400000, guid: 98a2de5026a7cd04494b40504e138231, type: 2}
+--- !u!114 &2740494412359515411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d236b7d11115f2143951f1e14045df39, type: 3}
   m_Name: Standalone Settings
   m_EditorClassIdentifier: 
-  m_LoaderManagerInstance: {fileID: -3108075608581819978}
+  m_LoaderManagerInstance: {fileID: 1089744874460163297}
   m_InitManagerOnStart: 1
