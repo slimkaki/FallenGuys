@@ -2,25 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PadController : MonoBehaviour
-{
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class PadController : MonoBehaviour {
+
+    private bool fallDownFlag = false;
+
+    void LateUpdate() {
+        if (fallDownFlag)
+            this.transform.position = this.transform.position - new Vector3(0f, 0.1f, 0f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-         
+    public void fallDown() {
+        fallDownFlag = true;
     }
 
-    private void OnTriggerEnter(Collider col) {
-        if (col.gameObject.CompareTag("Player")) {
-            Debug.Log("player hit");
-        }
+    public bool getIsFalling() {
+        return this.fallDownFlag;
     }
+
 }
