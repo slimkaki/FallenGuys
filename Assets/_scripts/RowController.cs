@@ -7,6 +7,7 @@ public class RowController : MonoBehaviour {
     private GameObject player;
     private GameObject leftPad;
     private GameObject rightPad;
+    public player_controller pS;
     public int truePad;
 
     void Start() {
@@ -22,15 +23,16 @@ public class RowController : MonoBehaviour {
 
     void Update() {
         if (Mathf.Abs(player.transform.position.x - this.transform.position.x) <= 1f) {
-            Debug.Log($"truePad = {truePad} - {this.gameObject.name}");
+            // Debug.Log($"truePad = {truePad} - {this.gameObject.name}");
             if (Mathf.Abs(leftPad.transform.position.z - player.transform.position.z) > Mathf.Abs(rightPad.transform.position.z - player.transform.position.z)) {
                 // Player na direita
-                if (truePad == 0 && !rightPad.GetComponent<PadController>().getIsFalling())
+                Debug.Log($"playerAlive? -> {pS.alive}");
+                if (truePad == 0 && !rightPad.GetComponent<PadController>().getIsFalling() && pS.alive)
                     rightPad.GetComponent<PadController>().fallDown();
             } else {
                 // Player na esquerda
-                Debug.Log($"leftPad -> {leftPad}");
-                if (truePad == 1 && !leftPad.GetComponent<PadController>().getIsFalling())
+                // Debug.Log($"leftPad -> {leftPad}");
+                if (truePad == 1 && !leftPad.GetComponent<PadController>().getIsFalling() && pS.alive)
                     leftPad.GetComponent<PadController>().fallDown();
             }
         }
