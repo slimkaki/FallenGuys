@@ -7,7 +7,7 @@ public class RowController : MonoBehaviour {
     private GameObject player;
     private GameObject leftPad;
     private GameObject rightPad;
-    public player_controller pS;
+    public PlayerController pS;
     public int truePad;
 
     void Start() {
@@ -23,7 +23,6 @@ public class RowController : MonoBehaviour {
 
     void Update() {
         if (Mathf.Abs(player.transform.position.x - this.transform.position.x) <= 1f) {
-            // Debug.Log($"truePad = {truePad} - {this.gameObject.name}");
             if (Mathf.Abs(leftPad.transform.position.z - player.transform.position.z) > Mathf.Abs(rightPad.transform.position.z - player.transform.position.z)) {
                 // Player na direita
                 Debug.Log($"playerAlive? -> {pS.alive}");
@@ -31,10 +30,13 @@ public class RowController : MonoBehaviour {
                     rightPad.GetComponent<PadController>().fallDown();
             } else {
                 // Player na esquerda
-                // Debug.Log($"leftPad -> {leftPad}");
                 if (truePad == 1 && !leftPad.GetComponent<PadController>().getIsFalling() && pS.alive)
                     leftPad.GetComponent<PadController>().fallDown();
             }
+        } else if (Mathf.Abs(player.transform.position.x - this.transform.position.x) > 1f && Mathf.Abs(player.transform.position.x - this.transform.position.x) <= 3f) {
+            // Precisa de bugfix, tem que resetar os tps locked quando o player da respawn, e checar pq a mao atrapalha tanto o collider
+            rightPad.GetComponent<PadController>().setIsNextRow();
+            leftPad.GetComponent<PadController>().setIsNextRow();
         }
     }
 
