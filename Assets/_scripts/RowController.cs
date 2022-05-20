@@ -26,14 +26,31 @@ public class RowController : MonoBehaviour {
             if (Mathf.Abs(leftPad.transform.position.z - player.transform.position.z) > Mathf.Abs(rightPad.transform.position.z - player.transform.position.z)) {
                 // Player na direita
                 Debug.Log($"playerAlive? -> {pS.alive}");
-                if (truePad == 0 && !rightPad.GetComponent<PadController>().getIsFalling() && pS.alive)
+                if (truePad == 0 && !rightPad.GetComponent<PadController>().getIsFalling() && pS.alive) {
                     rightPad.GetComponent<PadController>().fallDown();
+                    player.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY;
+                    rightPad.GetComponent<PadController>().turnOnSignLight(Color.red);
+                }
+
+                if (truePad == 1) {
+                    leftPad.GetComponent<PadController>().turnOnSignLight(Color.red);
+                    rightPad.GetComponent<PadController>().turnOnSignLight(Color.green);
+                }
             } else {
                 // Player na esquerda
-                if (truePad == 1 && !leftPad.GetComponent<PadController>().getIsFalling() && pS.alive)
+                if (truePad == 1 && !leftPad.GetComponent<PadController>().getIsFalling() && pS.alive) {
                     leftPad.GetComponent<PadController>().fallDown();
+                    player.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY;
+                    leftPad.GetComponent<PadController>().turnOnSignLight(Color.red);
+                }
+
+                if (truePad == 0) {
+                    rightPad.GetComponent<PadController>().turnOnSignLight(Color.red);
+                    leftPad.GetComponent<PadController>().turnOnSignLight(Color.green);
+                }
             }
-        } else if (Mathf.Abs(player.transform.position.x - this.transform.position.x) > 1f && Mathf.Abs(player.transform.position.x - this.transform.position.x) <= 3f) {
+            
+        } else if (player.transform.position.x - this.transform.position.x < 0f && player.transform.position.x - this.transform.position.x >= -4f) {
             // Precisa de bugfix, tem que resetar os tps locked quando o player da respawn, e checar pq a mao atrapalha tanto o collider
             rightPad.GetComponent<PadController>().setIsNextRow();
             leftPad.GetComponent<PadController>().setIsNextRow();

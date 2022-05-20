@@ -6,30 +6,39 @@ using Valve.VR.InteractionSystem;
 public class PadController : MonoBehaviour {
 
     private bool fallDownFlag = false;
-    public GameObject pS;
+    private GameObject pS;
     public Vector3 originalPos;
     private TeleportPoint tp;
-    private bool isNextRow = false;
     public bool isFirstRow = false;
+    private Light myLight;
 
     void Start() {
-        isNextRow = false;
         originalPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         pS = GameObject.FindGameObjectWithTag("Player");
         tp = GetComponentInChildren(typeof(TeleportPoint), true) as TeleportPoint;
-        if (!isFirstRow)
+        myLight = GetComponentInChildren(typeof(Light), true) as Light;
+        if (!isFirstRow) {
             tp.locked = true;
+            myLight.enabled = false;
+        } else {
+            myLight.color = Color.white;
+        }
     }
 
     void Update() {
-        // Debug.Log($"isAlive Update padcontroller {pS.GetComponent<PlayerController>().isAlive()}");
         if(!pS.GetComponent<PlayerController>().isAlive()) {
-            // Debug.Log("reseting pad");
             this.transform.position = originalPos;
+            myLight.enabled = false;
+            if (!isFirstRow) {
+                tp.locked = true;
+                myLight.enabled = false;
+                myLight.color = Color.white;
+            } else {
+                myLight.color = Color.white;
+                myLight.enabled = true;
+            }
         } 
-
-        if (isNextRow)
-            tp.locked = false;
+            
     }
 
     void LateUpdate() {
@@ -37,7 +46,13 @@ public class PadController : MonoBehaviour {
     }
 
     public void setIsNextRow() {
-        this.isNextRow = true;
+        tp.locked = false;
+        myLight.color = Color.white;
+        myLight.enabled = true;
+    }
+
+    public void turnOnSignLight(Color c) {
+        myLight.color = c;
     }
     
     public void gravityOnpad(){
@@ -52,8 +67,7 @@ public class PadController : MonoBehaviour {
     }
 
     public bool getIsFalling() {
-        Debug.Log("getIsFaling");
-        if(!pS.GetComponent<PlayerController>().isAlive()){
+        if(!pS.GetComponent<PlayerController>().isAlive()) {
             this.fallDownFlag = false;
         }
         return this.fallDownFlag;

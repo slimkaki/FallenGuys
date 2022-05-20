@@ -13,14 +13,13 @@ public class PlayerController : MonoBehaviour
         alive = true;
         deaths = 0;
         rb = gameObject.GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
     }
 
     // Update is called once per frame
     void Update() {
         if(this.transform.position.y < -7f && alive){
             alive = false;
-            Debug.Log(alive);
-            
             deaths++;
             StartCoroutine("Reset");
         }
@@ -35,14 +34,14 @@ public class PlayerController : MonoBehaviour
     }
 
     void respawn(){
-        Debug.Log(alive);
-        this.transform.position = new Vector3(0, 1.7f, 0);
+        this.transform.position = new Vector3(0, 0.7f, 0);
         rb.velocity = new Vector3(0f, 0f, 0f);
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
         alive = true;
     }
 
     IEnumerator Reset() {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         respawn();
     }
 }
