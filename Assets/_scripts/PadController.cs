@@ -21,6 +21,7 @@ public class PadController : MonoBehaviour {
             tp.locked = true;
             myLight.enabled = false;
         } else {
+            tp.locked = false;
             myLight.color = Color.white;
         }
     }
@@ -34,6 +35,7 @@ public class PadController : MonoBehaviour {
                 myLight.enabled = false;
                 myLight.color = Color.white;
             } else {
+                tp.locked = false;
                 myLight.color = Color.white;
                 myLight.enabled = true;
             }
@@ -53,6 +55,10 @@ public class PadController : MonoBehaviour {
 
     public void turnOnSignLight(Color c) {
         myLight.color = c;
+    }
+
+    public void turnOffSignLight() {
+        myLight.enabled = false;
     }
     
     public void gravityOnpad(){

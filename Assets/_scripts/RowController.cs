@@ -50,8 +50,8 @@ public class RowController : MonoBehaviour {
                 }
             }
             
-        } else if (player.transform.position.x - this.transform.position.x < 0f && player.transform.position.x - this.transform.position.x >= -4f) {
-            // Precisa de bugfix, tem que resetar os tps locked quando o player da respawn, e checar pq a mao atrapalha tanto o collider
+        } else if (player.GetComponent<PlayerController>().isAlive() && (player.transform.position.x - this.transform.position.x < 0f) && (player.transform.position.x - this.transform.position.x >= -4f)) {
+            // Precisa de bugfix, tem que resetar os tps locked quando o player da respawn
             rightPad.GetComponent<PadController>().setIsNextRow();
             leftPad.GetComponent<PadController>().setIsNextRow();
         }
