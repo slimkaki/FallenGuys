@@ -6,6 +6,8 @@ TagManager:
   tags:
   - left
   - DeathUI
+  - Obj_A
+  - Obj_B
   layers:
   - Default
   - TransparentFX

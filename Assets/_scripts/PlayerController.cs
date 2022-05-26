@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
         this.transform.position = new Vector3(0, 0.7f, 0);
         rb.velocity = new Vector3(0f, 0f, 0f);
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+        this.GetComponent<CharacterController>().enabled = false;
+        this.GetComponent<TrackPadWalk>().enabled = false;
         alive = true;
     }
 
