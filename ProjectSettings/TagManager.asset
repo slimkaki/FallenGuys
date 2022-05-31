@@ -8,6 +8,8 @@ TagManager:
   - DeathUI
   - Obj_A
   - Obj_B
+  - TpObj
+  - slackline
   layers:
   - Default
   - TransparentFX

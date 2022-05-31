@@ -63,7 +63,6 @@ public class PadController : MonoBehaviour {
     
     public void gravityOnpad(){
         if (this.fallDownFlag){
-            Debug.Log("falling pad");
             this.transform.position = this.transform.position - new Vector3(0f, 0.1f, 0f);
         }
     }

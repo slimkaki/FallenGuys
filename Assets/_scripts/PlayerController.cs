@@ -8,12 +8,16 @@ public class PlayerController : MonoBehaviour
     public bool alive;
     public int deaths;
     private Rigidbody rb;
+    private GameObject TpObj;
+    private SlackLineController slackLine;
     
     void Start() {
         alive = true;
         deaths = 0;
         rb = gameObject.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+        TpObj = GameObject.FindGameObjectWithTag("TpObj");
+        slackLine = GameObject.FindGameObjectWithTag("slackline").GetComponent<SlackLineController>();
     }
 
     // Update is called once per frame
@@ -39,6 +43,8 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
         this.GetComponent<CharacterController>().enabled = false;
         this.GetComponent<TrackPadWalk>().enabled = false;
+        TpObj.SetActive(true);
+        slackLine.resetStartedSlackFlag();
         alive = true;
     }
 
