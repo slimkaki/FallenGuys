@@ -10,6 +10,9 @@ TagManager:
   - Obj_B
   - TpObj
   - slackline
+  - star
+  - rocket
+  - coin
   layers:
   - Default
   - TransparentFX
