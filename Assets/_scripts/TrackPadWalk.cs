@@ -41,4 +41,8 @@ public class TrackPadWalk : MonoBehaviour {
         //transform.position = transform.position + move * Time.deltaTime * playerSpeed;
         controller.Move(move *playerSpeed* Time.deltaTime);
     }
+
+    public void setNewPlayerSpeed(float newSpeed) {
+        this.playerSpeed = newSpeed;
+    }
 }

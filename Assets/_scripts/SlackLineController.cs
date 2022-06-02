@@ -35,6 +35,20 @@ public class SlackLineController : MonoBehaviour {
                 player.GetComponent<TrackPadWalk>().enabled = false;
                 startedSlackFlag = false;
             }
+
+            if (player.transform.position.x <= ObjA.transform.position.x - 0.5f) {
+                // Volta pro tp
+                playerRb.constraints &= ~RigidbodyConstraints.FreezePositionY;
+                player.GetComponent<CharacterController>().enabled = false;
+                player.GetComponent<TrackPadWalk>().enabled = false;
+                startedSlackFlag = false;
+            }
+
+            if (player.transform.position.x >= ObjB.transform.position.x) {
+                // Aumenta velocidade do player
+                // player.GetComponent<TrackPadWalk>().setNewPlayerSpeed(5f);
+                startedSlackFlag = false;
+            }
         }
     }
 
