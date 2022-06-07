@@ -28,7 +28,7 @@ public class SlackLineController : MonoBehaviour {
                 player.GetComponent<TrackPadWalk>().enabled = true;
             }
         } else {
-            if (player.transform.position.z > 0.72f || player.transform.position.z < -0.72f) {
+            if (player.transform.position.z > 1f || player.transform.position.z < -1f) {
                 Debug.Log("Desligando trackpad");
                 playerRb.constraints &= ~RigidbodyConstraints.FreezePositionY;
                 player.GetComponent<CharacterController>().enabled = false;
@@ -36,11 +36,11 @@ public class SlackLineController : MonoBehaviour {
                 startedSlackFlag = false;
             }
 
-            if (player.transform.position.x <= ObjA.transform.position.x - 0.5f) {
+            if (player.transform.position.x < ObjA.transform.position.x - 0.05f) {
                 // Volta pro tp
-                playerRb.constraints &= ~RigidbodyConstraints.FreezePositionY;
                 player.GetComponent<CharacterController>().enabled = false;
                 player.GetComponent<TrackPadWalk>().enabled = false;
+                TpObj.SetActive(true);
                 startedSlackFlag = false;
             }
 

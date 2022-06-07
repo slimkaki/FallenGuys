@@ -22,7 +22,7 @@ public class objBehav : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == this.gameObject.tag) 
+        if(col.gameObject.tag  == this.gameObject.tag + "Shadow") 
         {
             
             touched = true;
@@ -61,7 +61,7 @@ public class objBehav : MonoBehaviour
                 {
                     transform.position = snapTo.transform.position;
                     transform.rotation = snapTo.transform.rotation;
-                    snapTo.GetComponent<Collider>().enabled = false; // achei melhor desligar o collider
+                    // snapTo.GetComponent<Collider>().enabled = false; // achei melhor desligar o collider
                 }
                 else
                 {
@@ -77,4 +77,13 @@ public class objBehav : MonoBehaviour
             }
         }
     }
+
+    public void setTouchedToFalse() {
+        touched = false;
+    }
+
+    public bool getTouched() {
+        return touched;
+    }
+    
 }

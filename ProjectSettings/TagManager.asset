@@ -13,6 +13,11 @@ TagManager:
   - star
   - rocket
   - coin
+  - rocketShadow
+  - coinShadow
+  - starShadow
+  - UI_EndGame
+  - Obj_C
   layers:
   - Default
   - TransparentFX
